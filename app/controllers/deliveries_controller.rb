@@ -26,8 +26,6 @@ class DeliveriesController < ApplicationController
   def create
     @delivery = Delivery.new(delivery_params)
 
-    puts "~~~~inside create delivery controller!!~~~~"
-
     respond_to do |format|
       if @delivery.save
         format.html { redirect_to @delivery, notice: 'Delivery was successfully created.' }
