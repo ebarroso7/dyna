@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="savedLocations.length">
+    <div v-if="savedLocations">
       <p>Your saved locations:<p>
       <div v-for="location in savedLocations">
         <div class="location_card" @click="location_url(location.id)" @keyup.enter="location_url(location.id)" tabindex="0">
@@ -9,20 +9,44 @@
         </div>
       </div>
     </div>
+
+    <div v-if="deliveries">
+      <div @click="toggleAddDeliveryForm()" @keyup.enter="toggleAddDeliveryForm()" tabindex="0">
+        Add a delivery to this location
+      </div>
+
+      <div v-if="showAddDeliveryForm">
+        vue form
+      </div>
+
+      <div v-for="delivery in deliveries">
+        <div class="location_card" @click="delivery_url(delivery.id)" @keyup.enter="delivery_url(delivery.id)" tabindex="0">
+          <h4>{{ delivery.name }}</h4>
+          {{delivery.store}}
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 export default {
-  props: ["savedLocations"],
+  props: ["savedLocations", "deliveries"],
   data() {
     return {
-      message: "Hello Vue!"
+      showAddDeliveryForm: false,
     }
   },
   methods: {
-    location_url(id){
+    delivery_url(id){
       window.location.href = "/locations/" + id
+    },
+    toggleAddDeliveryForm(){
+      this.showAddDeliveryForm = !this.showAddDeliveryForm
+    },
+    formatDate(date){
+      return moment(String(date)).format('LLLL')
     }
   },
 }

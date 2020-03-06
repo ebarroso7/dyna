@@ -12,6 +12,7 @@ class LocationsController < ApplicationController
   # GET /locations/1.json
   def show
     @location = Location.find params[:id]
+    @deliveries = @location.deliveries
     @title = "#{@location.name.titleize} | Location"
   end
 

@@ -1,13 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @location.name %>
-</p>
+<h1><%= @location.name %></h1>
+<h3><%= @location.address %> </h3>
+
+<%= tag.div id: :location, data: { deliveries: @deliveries.to_json() } %>
 
 <p>
-  <strong>Address:</strong>
-  <%= @location.address %>
+  <%= @deliveries.inspect %>
 </p>
 
 <%= link_to 'Edit', edit_location_path(@location) %> |
