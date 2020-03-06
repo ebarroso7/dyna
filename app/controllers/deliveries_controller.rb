@@ -12,6 +12,7 @@ class DeliveriesController < ApplicationController
   # GET /deliveries/1.json
   def show
     @delivery = Delivery.find params[:id]
+    @orders = @delivery.orders
     @title = @delivery.store.titleize
   end
 

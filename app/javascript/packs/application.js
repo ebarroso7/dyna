@@ -26,7 +26,6 @@ document.addEventListener("turbolinks:load", function(){
   }
 
   var location_element = document.querySelector("#location")
-  console.log("location_element", location_element)
   if (location_element != undefined){
     console.log("FOUND ELEMENT!!!")
     console.log(location_element)
@@ -40,6 +39,20 @@ document.addEventListener("turbolinks:load", function(){
     })
   }
 
+  var orders_element = document.querySelector("#orders")
+  console.log("orders_element", orders_element)
+  if (orders_element != undefined){
+    console.log("FOUND ELEMENT!!!")
+    console.log(orders_element)
+    const app = new Vue({
+      el: orders_element,
+      data: {
+        orders: JSON.parse(orders_element.dataset.orders)
+      },
+      template: "<App :orders='orders' />",
+      components: { App }
+    })
+  }
 })
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

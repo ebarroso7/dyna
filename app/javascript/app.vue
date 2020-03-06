@@ -28,16 +28,34 @@
       </div>
     </div>
 
+    <div v-if="orders">
+      <div @click="toggleAddOrderForm()" @keyup.enter="toggleAddOrderForm()" tabindex="0">
+        Add an order to this delivery
+      </div>
+
+      <div v-if="showAddOrderForm">
+        vue form
+      </div>
+
+      <div v-for="order in orders">
+        <div class="location_card" @click="order_url(order.id)" @keyup.enter="order_url(order.id)" tabindex="0">
+          <h3>{{ order.description}}</h3>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </template>
 
 <script>
 import moment from 'moment'
 export default {
-  props: ["savedLocations", "deliveries"],
+  props: ["savedLocations", "deliveries", "orders"],
   data() {
     return {
       showAddDeliveryForm: false,
+      showAddOrderForm: false,
     }
   },
   methods: {
@@ -47,8 +65,14 @@ export default {
     location_url(id){
       window.location.href = "/locations/" + id
     },
+    order_url(id){
+      window.location.href = "/orders/" + id
+    },
     toggleAddDeliveryForm(){
       this.showAddDeliveryForm = !this.showAddDeliveryForm
+    },
+    toggleAddOrderForm(){
+      this.showAddOrderForm = !this.showAddOrderForm
     },
     formatDate(date){
       return moment(String(date)).format('LLLL')

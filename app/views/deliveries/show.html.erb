@@ -1,27 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @delivery.name %>
-</p>
+<h1><%= @delivery.name %></h1>
+<h3><%= @delivery.store %></h3>
+
+
+<%= link_to 'Edit', edit_delivery_path(@delivery) %> |
+<%= link_to 'Back', deliveries_path %>
+<br>
 
 <p>
   <strong>Time:</strong>
   <%= @delivery.time %>
 </p>
-
-<p>
-  <strong>Store:</strong>
-  <%= @delivery.store %>
-</p>
-
-<%= link_to 'Edit', edit_delivery_path(@delivery) %> |
-<%= link_to 'Back', deliveries_path %>
-
-<% if @delivery.orders.any? %>
-  <p>Orders on this delivery<p>
-<% end %>
-
-<p> Add Your order to this delivery! </p>
+<br>
+<%= tag.div id: :orders, data: { orders: @orders.to_json() } %>
+<br>
 
 <%= render 'new_order', order: @delivery %>
