@@ -10,6 +10,7 @@ require("channels")
 
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
+import moment from 'moment'
 
 document.addEventListener("turbolinks:load", function(){
   var saved_locations_element = document.querySelector("#saved_locations")

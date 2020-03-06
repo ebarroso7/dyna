@@ -20,6 +20,7 @@
       </div>
 
       <div v-for="delivery in deliveries">
+        <h3>{{formatDate(delivery.time)}}</h3>
         <div class="location_card" @click="delivery_url(delivery.id)" @keyup.enter="delivery_url(delivery.id)" tabindex="0">
           <h4>{{ delivery.name }}</h4>
           {{delivery.store}}
@@ -31,6 +32,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   props: ["savedLocations", "deliveries"],
   data() {
@@ -40,6 +42,9 @@ export default {
   },
   methods: {
     delivery_url(id){
+      window.location.href = "/deliveries/" + id
+    },
+    location_url(id){
       window.location.href = "/locations/" + id
     },
     toggleAddDeliveryForm(){

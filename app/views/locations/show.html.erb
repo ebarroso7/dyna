@@ -3,15 +3,12 @@
 <h1><%= @location.name %></h1>
 <h3><%= @location.address %> </h3>
 
-<%= tag.div id: :location, data: { deliveries: @deliveries.to_json() } %>
-
-<p>
-  <%= @deliveries.inspect %>
-</p>
-
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>
+<br>
 
-<p>Schedule a new delivery for this location!</p>
+<%= tag.div id: :location, data: { deliveries: @deliveries.to_json() } %>
+
+<br>
 
 <%= render 'new_delivery', delivery: @location %>
