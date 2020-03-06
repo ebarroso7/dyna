@@ -29,6 +29,7 @@
     </div>
 
     <div v-if="orders">
+      <h3>Delivery time: {{formatDate(this.orders[0].delivery.time)}}</h3>
       <div v-for="order in orders">
         <div class="location_card" @click="order_url(order.id)" @keyup.enter="order_url(order.id)" tabindex="0">
           <h3>{{order.user.first_name}}'s order:</h3>

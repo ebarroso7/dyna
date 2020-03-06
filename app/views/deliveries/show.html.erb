@@ -2,16 +2,13 @@
 
 <h1><%= @delivery.store %></h1>
 <h3><%= @delivery.name %></h3>
-<p>
-  <strong>Delivery time:</strong>
-  <%= @delivery.time %>
-</p>
+
 <%= link_to 'Edit', edit_delivery_path(@delivery) %> |
 <%= link_to 'Back', deliveries_path %>
 <br>
 
 <br>
-<%= tag.div id: :orders, data: { orders: @orders.to_json(include: :user) } %>
+<%= tag.div id: :orders, data: { orders: @orders.to_json({:include => [:user, :delivery] }) } %>
 <br>
 
 <%= render 'new_order', order: @delivery %>
