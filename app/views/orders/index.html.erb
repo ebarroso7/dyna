@@ -14,7 +14,7 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.confirmation_number %></td>
+        <td>Confirmed: <%= order.confirmed %></td>
         <td><%= order.description %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>

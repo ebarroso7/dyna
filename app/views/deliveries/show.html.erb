@@ -2,6 +2,12 @@
 
 <h1><%= @delivery.store %></h1>
 <h3><%= @delivery.name %></h3>
+<p><%= @delivery.instructions %> </p>
+
+<% if !@delivery.orders.any? %>
+  <h4><%= "Delivery time: #{@delivery.time}" %></h4>
+  <br>
+<% end %>
 
 <%= link_to 'Edit', edit_delivery_path(@delivery) %> |
 <%= link_to 'Back', deliveries_path %>

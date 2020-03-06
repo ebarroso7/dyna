@@ -26,6 +26,11 @@
     <%= f.text_field :store %>
   </div>
 
+  <div class="field">
+    <%= f.label :instructions %>
+    <%= f.text_area :instructions %>
+  </div>
+
   <div class="actions">
     <%= f.hidden_field :location_id, value: @location.id %>
     <%= f.submit %>

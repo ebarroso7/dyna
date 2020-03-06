@@ -14,7 +14,7 @@ class OrdersTest < ApplicationSystemTestCase
     visit orders_url
     click_on "New Order"
 
-    fill_in "Confirmation number", with: @order.confirmation_number
+    fill_in "Confirmation", with: @order.confirmed
     fill_in "Description", with: @order.description
     click_on "Create Order"
 
@@ -26,7 +26,7 @@ class OrdersTest < ApplicationSystemTestCase
     visit orders_url
     click_on "Edit", match: :first
 
-    fill_in "Confirmation number", with: @order.confirmation_number
+    fill_in "Confirmation", with: @order.confirmed
     fill_in "Description", with: @order.description
     click_on "Update Order"
 
