@@ -17,6 +17,9 @@
   </head>
 
   <body>
+    <% if current_user.present? %>
+      <%= render partial: "layouts/top_bar" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
