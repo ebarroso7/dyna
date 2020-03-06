@@ -41,11 +41,22 @@
       <div @click="toggleAddOrderForm()" @keyup.enter="toggleAddOrderForm()" tabindex="0">
         Add an order to this delivery
       </div>
-
       <div v-if="showAddOrderForm">
         vue form
       </div>
       <br>
+    </div>
+
+    <div v-if="order">
+      <span>
+        <input id="confirmed" type="checkbox" value="true" v-model="confirmed" />
+        <label for="confirmed">Confirm</label>
+      </span>
+      <div v-if="confirmed">
+        <br>
+        <h3>Thank you for your order</h3>
+        <img src="/assets/thank-you.gif" alt="Thank you for confirming your order">
+      </div>
     </div>
 
   </div>
@@ -54,11 +65,12 @@
 <script>
 import moment from 'moment'
 export default {
-  props: ["savedLocations", "deliveries", "orders"],
+  props: ["savedLocations", "deliveries", "orders", "order"],
   data() {
     return {
       showAddDeliveryForm: false,
       showAddOrderForm: false,
+      confirmed: false,
     }
   },
   methods: {
