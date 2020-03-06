@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
-      sessions[:user_id] = @user.id
+      session[:user_id] = @user.id
       redirect_to '/welcome'
     else
       redirect_to '/login'
@@ -18,6 +18,11 @@ class SessionsController < ApplicationController
 
   def welcome
     @title = "Dyna Home"
-    @saved_locations = current_user.locations
+    @saved_locations = current_user.locations if current_user.present?
+  end
+
+  def logout
+    session[:user_id] = nil
+    redirect_to '/welcome'
   end
 end

@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @title = "Orders"
-    @orders = current_user.orders
+    @orders = current_user.orders if current_user.present?
   end
 
   # GET /orders/1
