@@ -1,19 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @delivery.name %></h1>
-<h3><%= @delivery.store %></h3>
-
-
+<h1><%= @delivery.store %></h1>
+<h3><%= @delivery.name %></h3>
+<p>
+  <strong>Delivery time:</strong>
+  <%= @delivery.time %>
+</p>
 <%= link_to 'Edit', edit_delivery_path(@delivery) %> |
 <%= link_to 'Back', deliveries_path %>
 <br>
 
-<p>
-  <strong>Time:</strong>
-  <%= @delivery.time %>
-</p>
 <br>
-<%= tag.div id: :orders, data: { orders: @orders.to_json() } %>
+<%= tag.div id: :orders, data: { orders: @orders.to_json(include: :user) } %>
 <br>
 
 <%= render 'new_order', order: @delivery %>

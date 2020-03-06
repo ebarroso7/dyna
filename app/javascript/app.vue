@@ -11,24 +11,32 @@
     </div>
 
     <div v-if="deliveries">
+      <div v-for="delivery in deliveries">
+        <h3>{{formatDate(delivery.time)}}</h3>
+        <div class="location_card" @click="delivery_url(delivery.id)" @keyup.enter="delivery_url(delivery.id)" tabindex="0">
+          <h4>{{ delivery.store }}</h4>
+          {{ delivery.name }}
+        </div>
+        <br>
+      </div>
       <div @click="toggleAddDeliveryForm()" @keyup.enter="toggleAddDeliveryForm()" tabindex="0">
         Add a delivery to this location
       </div>
-
       <div v-if="showAddDeliveryForm">
         vue form
       </div>
 
-      <div v-for="delivery in deliveries">
-        <h3>{{formatDate(delivery.time)}}</h3>
-        <div class="location_card" @click="delivery_url(delivery.id)" @keyup.enter="delivery_url(delivery.id)" tabindex="0">
-          <h4>{{ delivery.name }}</h4>
-          {{delivery.store}}
-        </div>
-      </div>
     </div>
 
     <div v-if="orders">
+      <div v-for="order in orders">
+        <div class="location_card" @click="order_url(order.id)" @keyup.enter="order_url(order.id)" tabindex="0">
+          <h3>{{order.user.first_name}}'s order:</h3>
+          {{ order.description }}
+        </div>
+        <br>
+      </div>
+
       <div @click="toggleAddOrderForm()" @keyup.enter="toggleAddOrderForm()" tabindex="0">
         Add an order to this delivery
       </div>
@@ -36,13 +44,7 @@
       <div v-if="showAddOrderForm">
         vue form
       </div>
-
-      <div v-for="order in orders">
-        <div class="location_card" @click="order_url(order.id)" @keyup.enter="order_url(order.id)" tabindex="0">
-          <h3>{{ order.description}}</h3>
-        </div>
-      </div>
-
+      <br>
     </div>
 
   </div>
