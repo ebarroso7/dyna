@@ -13,8 +13,11 @@ class SessionsController < ApplicationController
   end
 
   def login
+    @title = "Login"
   end
 
   def welcome
+    @title = "Dyna Home"
+    @saved_locations = current_user.locations
   end
 end
