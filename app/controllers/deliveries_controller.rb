@@ -4,21 +4,27 @@ class DeliveriesController < ApplicationController
   # GET /deliveries
   # GET /deliveries.json
   def index
+    @title = "Deliveries"
     @deliveries = Delivery.all
   end
 
   # GET /deliveries/1
   # GET /deliveries/1.json
   def show
+    @delivery = Delivery.find params[:id]
+    @title = @delivery.store.titleize
   end
 
   # GET /deliveries/new
   def new
+    @title = "New Delivery"
     @delivery = Delivery.new
   end
 
   # GET /deliveries/1/edit
   def edit
+    @delivery = Delivery.find params[:id]
+    @title = @delivery.name.titleize
   end
 
   # POST /deliveries

@@ -14,37 +14,29 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    @title = "New User"
     @user = User.new
   end
 
   # GET /users/1/edit
   def edit
+    @title = "Edit User"
   end
 
   # POST /users
   # POST /users.json
   def create
-    puts "~~~~~INSIDE USER CREATE ~~~~~~"
-    puts user_params.inspect
     @user = User.new(user_params)
-    @user.save
-
-    puts @user.inspect
-    puts "made new user"
-
-    session[:user_id] = @user.id
-
-    redirect_to '/welcome'
-
-    # respond_to do |format|
-    #   if @user.save
-    #     format.html { redirect_to @user, notice: 'User was successfully created.' }
-    #     format.json { render :show, status: :created, location: @user }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @user.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    if @user.save
+      puts "made new user"
+      session[:user_id] = @user.id
+      redirect_to '/welcome'
+    else
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /users/1

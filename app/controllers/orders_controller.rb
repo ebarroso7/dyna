@@ -4,16 +4,20 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
+    @title = "Orders"
     @orders = Order.all
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @order = Order.find params[:id]
+    @title = "#{@order.user.name}\'s Order"
   end
 
   # GET /orders/new
   def new
+    @title = "New Order"
     @order = Order.new
   end
 

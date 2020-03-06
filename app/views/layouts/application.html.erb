@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dyna</title>
+    <title>
+      <% if @title %>
+        <%= "#{@title.titleize}"%>
+      <% else %>
+        <%= "Dyna" %>
+      <% end %>
+     </title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

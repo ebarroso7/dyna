@@ -4,21 +4,27 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
+    @title = "Locations"
     @locations = Location.all
   end
 
   # GET /locations/1
   # GET /locations/1.json
   def show
+    @location = Location.find params[:id]
+    @title = "#{@location.name.titleize} | Location"
   end
 
   # GET /locations/new
   def new
+    @title = "New Location"
     @location = Location.new
   end
 
   # GET /locations/1/edit
   def edit
+    @location = Location.find params[:id]
+    @title = "#{@location.name.titleize} | Location"
   end
 
   # POST /locations
