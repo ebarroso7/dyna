@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_175828) do
+ActiveRecord::Schema.define(version: 2020_03_06_004209) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string "name"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_175828) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "location_id"
-    t.integer "order_id"
+    t.text "instructions"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -27,8 +27,6 @@ ActiveRecord::Schema.define(version: 2020_03_05_175828) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.integer "delivery_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -40,14 +38,18 @@ ActiveRecord::Schema.define(version: 2020_03_05_175828) do
     t.integer "delivery_id"
   end
 
+  create_table "saved_locations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "location_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "location_id"
-    t.integer "order_id"
+    t.string "password_digest"
   end
 
 end

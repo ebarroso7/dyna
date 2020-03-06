@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   resources :orders
   resources :deliveries
   resources :locations
-  resources :users
+  resources :users, only: [:new, :create]
+
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  get 'welcome', to: 'sessions#welcome'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   #groot the root!
-  root to: 'welcome#index'
+  root to: 'sessions#welcome'
 end

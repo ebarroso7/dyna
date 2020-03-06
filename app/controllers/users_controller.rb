@@ -24,17 +24,27 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    puts "~~~~~INSIDE USER CREATE ~~~~~~"
+    puts user_params.inspect
     @user = User.new(user_params)
+    @user.save
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    puts @user.inspect
+    puts "made new user"
+
+    session[:user_id] = @user.id
+
+    redirect_to '/welcome'
+
+    # respond_to do |format|
+    #   if @user.save
+    #     format.html { redirect_to @user, notice: 'User was successfully created.' }
+    #     format.json { render :show, status: :created, location: @user }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /users/1
@@ -69,6 +79,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email)
+      params.require(:user).permit(:first_name, :last_name, :email, :password)
     end
 end
