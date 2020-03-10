@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_06_143643) do
+ActiveRecord::Schema.define(version: 2020_03_10_142329) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string "name"
@@ -30,12 +30,12 @@ ActiveRecord::Schema.define(version: 2020_03_06_143643) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.boolean "confirmed", default: false
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "delivery_id"
-    t.boolean "confirmed", default: false
   end
 
   create_table "saved_locations", force: :cascade do |t|
