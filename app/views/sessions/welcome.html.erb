@@ -1,6 +1,7 @@
 <% if logged_in? %>
   <div class="center jumbotron">
     <h1>Welcome, <%= current_user.first_name %>! Feeling Hungry?</h1>
+    <%= link_to "Place an order", '/orders', method: :get, class: "btn btn-lg btn-primary" %><br>
     <% if @saved_locations.present? %>
       <%= tag.div id: :saved_locations, data: { saved_locations: @saved_locations.to_json() } %>
     <% end %>
@@ -15,7 +16,8 @@
     <p class="text-muted">Ever wonder who else is ordering food near you?</p><br> 
     <p class="text-muted">Log in or Sign up to place food orders in bulk.</p>
 
-    <%= link_to "Log in", '/login', method: :get, class: "btn btn-lg btn-primary"%> <br>
-    <%= link_to "Sign Up", '/users/new', method: :get, class: "btn btn-lg btn-primary"%>
+    <%= link_to "Log in", '/login', method: :get, class: "btn btn-lg btn-primary" %><br>
+    <%= link_to "Sign Up", '/users/new', method: :get, class: "btn btn-lg btn-primary" %>
+
   </div>
 <% end %>

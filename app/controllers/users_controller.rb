@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    # @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -29,8 +30,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       puts "made new user"
+      flash[:success] = "Welcome to the Dyna Application!"
       session[:user_id] = @user.id
-      redirect_to '/welcome'
+      redirect_to @user
     else
       respond_to do |format|
         format.html { render :new }
@@ -71,6 +73,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password)
+      params.require(:user).permit(:first_name, :last_name, :email, :password,
+      :password_confirmation)
     end
 end
