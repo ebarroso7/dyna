@@ -7,22 +7,21 @@
       <% else %>
         <%= "Dyna" %>
       <% end %>
-     </title>
-    <%= favicon_link_tag asset_path("earth-icon.png") %>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    </title>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+   <%= csrf_meta_tags %>
+   <%= csp_meta_tag %>
+
+   <%= stylesheet_link_tag 'application', media: 'all',
+                                          'data-turbolinks-track': 'reload' %>
+   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+   <%= render 'layouts/shim' %>
   </head>
-
   <body>
-    <% if current_user.present? %>
-      <%= render partial: "layouts/top_bar" %>
-    <% end %>
-    <div id="main-content" class="mainContainer" role="main">
-      <%= yield %>
-    </div>
-  </body>
-</html>
+    <%= render 'layouts/header' %>
+       <div class="container">
+          <%= yield %>
+          <%= render 'layouts/footer' %>
+       </div>
+    </body>
+  </html>
